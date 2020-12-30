@@ -33,8 +33,6 @@ public class mailLogin {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("login-passwd"))).sendKeys(invalidPasswd);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("login-signin"))).click();
         assertThat(wait.until(ExpectedConditions.presenceOfElementLocated(By.className("error-msg"))).isDisplayed()).isTrue();
-
-
         driver.close();
 
     }
