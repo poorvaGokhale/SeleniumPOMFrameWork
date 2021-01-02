@@ -17,26 +17,24 @@ public class YmailLoginTests extends BaseTest{
     @Test
     public void invalidUserTest() {
         usrLoginPage = new UsrLoginPage(getDriver(), getWebDriverWait());
-        usrLoginPage.insertUserName(inValidUserName);
-        assertThat(usrLoginPage.checkUserNameSuccess()).isTrue();
+        assertThat(usrLoginPage.validateYmailUser(inValidUserName)).isTrue();
     }
 
     @Test
     public void inValidPasswordTest() {
         usrLoginPage = new UsrLoginPage(getDriver(), getWebDriverWait());
-        usrLoginPage.insertUserName(validUserName);
+        usrLoginPage.validateYmailUser(validUserName);
+
         passwdLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
-        passwdLoginPage.insertPassword(invalidPasswd);
-        assertThat(passwdLoginPage.checkLoginFail()).isTrue();
+        assertThat(passwdLoginPage.validateYmailPasswordFail(invalidPasswd)).isTrue();
     }
 
     @Test
     public void validPasswordTest() {
         usrLoginPage = new UsrLoginPage(getDriver(), getWebDriverWait());
-        usrLoginPage.insertUserName(validUserName);
+        usrLoginPage.validateYmailUser(validUserName);
         passwdLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
-        passwdLoginPage.insertPassword(validPasswd);
-        assertThat(passwdLoginPage.checkLoginSuccess()).isTrue();
+        assertThat(passwdLoginPage.validateYmailPasswordSuccess(validPasswd)).isTrue();
     }
 
 }

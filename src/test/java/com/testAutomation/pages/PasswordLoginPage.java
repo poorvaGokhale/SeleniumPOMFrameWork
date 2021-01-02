@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PasswordLoginPage {
+public class PasswordLoginPage  extends BasePage{
 
-    private WebDriver driver;
+ /*   private WebDriver driver;
     private WebDriverWait wait;
 
     //   By userName = By.id("login-username");
@@ -18,29 +18,30 @@ public class PasswordLoginPage {
     private By signInError = By.className("error-msg");
     private By signInProfile = By.id("header-profile-button");
 
-
-    public PasswordLoginPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+*/
+    public PasswordLoginPage (WebDriver driver, WebDriverWait wait) {
+        setDriver(driver);
+        setWebDriverWait(wait);
     }
 
+    public Boolean validateYmailPasswordFail(String password){
+ //       super.insertUserName(userName);
+  //      super.loginButtonClick();
 
-    public void insertPassword(String password) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(passWord)).sendKeys(password);
-        wait.until(ExpectedConditions.presenceOfElementLocated(loginButton)).click();
+        super.insertPassword(password);
+        super.loginButtonClick();
 
+        return super.checkLoginFail();
     }
 
-    public Boolean checkLoginFail() {
-        Boolean fail = false;
-        fail = wait.until(ExpectedConditions.presenceOfElementLocated(signInError)).isDisplayed();
-        return fail;
-    }
+    public Boolean validateYmailPasswordSuccess(String password){
+  //      super.insertUserName(userName);
+   //     super.loginButtonClick();
 
-    public Boolean checkLoginSuccess() {
-        Boolean success = true;
-        success = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("header-profile-button"))).isDisplayed();
-        return success;
+        super.insertPassword(password);
+        super.loginButtonClick();
+
+        return super.checkLoginSuccess();
     }
 
 }

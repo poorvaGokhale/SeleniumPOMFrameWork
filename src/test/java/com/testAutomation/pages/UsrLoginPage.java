@@ -7,29 +7,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UsrLoginPage {
+public class UsrLoginPage extends BasePage{
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    private By userName = By.id("login-username");
-    private By loginButton = By.id("login-signin");
-    private By signInError = By.className("error-msg");
-
-    public UsrLoginPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public UsrLoginPage (WebDriver driver, WebDriverWait wait) {
+        setDriver(driver);
+        setWebDriverWait(wait);
     }
 
-    public void insertUserName(String userName) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(this.userName)).sendKeys(userName);
-        wait.until(ExpectedConditions.presenceOfElementLocated(loginButton)).click();
+    public Boolean validateYmailUser(String userName){
+        super.insertUserName(userName);
+        super.loginButtonClick();
+        return super.checkLoginFail();
     }
-
-    public Boolean checkUserNameSuccess() {
-        Boolean fail = false;
-        fail = wait.until(ExpectedConditions.presenceOfElementLocated(signInError)).isDisplayed();
-        return fail;
-    }
-
 }
