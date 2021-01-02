@@ -9,32 +9,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UsrLoginPage {
 
-    WebDriver driver;
-    WebDriverWait wait ;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-   By userName = By.id("login-username");
-   By loginButton = By.id("login-signin");
-   By signInError = By.className("error-msg");
+    private By userName = By.id("login-username");
+    private By loginButton = By.id("login-signin");
+    private By signInError = By.className("error-msg");
 
-
-
-    public UsrLoginPage(WebDriver driver, WebDriverWait wait){
+    public UsrLoginPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
         this.wait = wait;
     }
 
-
-
-    public void InsertUserName(String UserName) {
-        wait.until( ExpectedConditions.presenceOfElementLocated( userName )).sendKeys ( UserName );
+    public void insertUserName(String userName) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(this.userName)).sendKeys(userName);
         wait.until(ExpectedConditions.presenceOfElementLocated(loginButton)).click();
-
     }
 
-    public Boolean CheckUserNameSuccess(){
-
-      Boolean fail =  wait.until(ExpectedConditions.presenceOfElementLocated(signInError)).isDisplayed ();
-      return fail;
+    public Boolean checkUserNameSuccess() {
+        Boolean fail = false;
+        fail = wait.until(ExpectedConditions.presenceOfElementLocated(signInError)).isDisplayed();
+        return fail;
     }
 
 }

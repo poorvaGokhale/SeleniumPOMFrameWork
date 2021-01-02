@@ -26,7 +26,7 @@ Launch URl -> Enter Username -> Click SignIn -> Enter Passwprd -> Click Login
 
 Installation and Execution:
 clone this project from git
-update Testdata
+update Testdata:
 open terminal and navigate to project directory
 Run "mvn clean test"
 
