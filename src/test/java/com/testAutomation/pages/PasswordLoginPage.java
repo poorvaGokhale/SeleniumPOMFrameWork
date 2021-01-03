@@ -25,22 +25,14 @@ public class PasswordLoginPage  extends BasePage{
     }
 
     public Boolean validateYmailPasswordFail(String password){
- //       super.insertUserName(userName);
-  //      super.loginButtonClick();
-
         super.insertPassword(password);
         super.loginButtonClick();
-
         return super.checkLoginFail();
     }
 
     public Boolean validateYmailPasswordSuccess(String password){
-  //      super.insertUserName(userName);
-   //     super.loginButtonClick();
-
         super.insertPassword(password);
         super.loginButtonClick();
-
         return super.checkLoginSuccess();
     }
 

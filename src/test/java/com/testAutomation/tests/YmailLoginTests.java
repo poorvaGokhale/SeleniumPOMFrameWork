@@ -2,9 +2,7 @@ package com.testAutomation.tests;
 
 import com.testAutomation.pages.PasswordLoginPage;
 import com.testAutomation.pages.UsrLoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Description;
 import org.testng.annotations.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -12,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class YmailLoginTests extends BaseTest{
 
     private UsrLoginPage usrLoginPage;
-    private PasswordLoginPage passwdLoginPage;
+    private PasswordLoginPage passwordLoginPage;
 
     @Test
     public void invalidUserTest() {
@@ -21,20 +19,21 @@ public class YmailLoginTests extends BaseTest{
     }
 
     @Test
+            //(description=”Invalid Login Scenario with wrong username and password.”)
+ //   @Description(“Test Description: Login test with wrong username and wrong password.”)
     public void inValidPasswordTest() {
         usrLoginPage = new UsrLoginPage(getDriver(), getWebDriverWait());
         usrLoginPage.validateYmailUser(validUserName);
-
-        passwdLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
-        assertThat(passwdLoginPage.validateYmailPasswordFail(invalidPasswd)).isTrue();
+        passwordLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
+        assertThat(passwordLoginPage.validateYmailPasswordFail(invalidPassword)).isTrue();
     }
 
     @Test
     public void validPasswordTest() {
         usrLoginPage = new UsrLoginPage(getDriver(), getWebDriverWait());
         usrLoginPage.validateYmailUser(validUserName);
-        passwdLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
-        assertThat(passwdLoginPage.validateYmailPasswordSuccess(validPasswd)).isTrue();
+        passwordLoginPage = new PasswordLoginPage(getDriver(), getWebDriverWait());
+        assertThat(passwordLoginPage.validateYmailPasswordSuccess(validPassword)).isTrue();
     }
 
 }
